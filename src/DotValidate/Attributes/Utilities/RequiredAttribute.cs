@@ -1,4 +1,4 @@
-namespace DotValidate.Attributes;
+namespace DotValidate.Attributes.Utilities;
 
 /// <summary>
 /// Specifies that a property value is required.

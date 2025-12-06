@@ -1,6 +1,6 @@
-using DotValidate.Attributes;
 using DotValidate.Attributes.Numbers;
 using DotValidate.Attributes.Strings;
+using DotValidate.Attributes.Utilities;
 using DotValidate.Core;
 using Xunit;
 

@@ -30,11 +30,12 @@ var api = app.MapDotValidateGroup(); // For Minimal APIs
 ### 2. Decorate your DTOs with validation attributes
 
 ```csharp
-using DotValidate.Attributes;
+using DotValidate.Attributes.Utilities;
 using DotValidate.Attributes.Strings;
 using DotValidate.Attributes.Numbers;
 using DotValidate.Attributes.Collections;
 using DotValidate.Attributes.Dates;
+using DotValidate.Attributes.Booleans;
 
 public class CreateUserDto
 {
@@ -81,7 +82,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 
 ## Available Attributes
 
-### General
+### Utilities
 
 | Attribute | Description |
 |-----------|-------------|
@@ -113,6 +114,14 @@ api.MapPost("/users", (CreateUserDto dto) =>
 |-----------|-------------|
 | `[After(date)]` | Date must be after the specified date |
 | `[Before(date)]` | Date must be before the specified date |
+
+### Booleans
+
+| Attribute | Description |
+|-----------|-------------|
+| `[Accepted]` | Must be "yes", "on", 1, "1", true, or "true" |
+| `[Declined]` | Must be "no", "off", 0, "0", false, or "false" |
+| `[Boolean]` | Must be a valid boolean (true, false, 1, 0, "1", "0") |
 
 ### Attribute Options
 
@@ -153,6 +162,18 @@ public DateTime BirthDate { get; set; }
 [After("today")]
 [Before("2025-12-31")]
 public DateTime BookingDate { get; set; }
+
+// Terms of Service must be accepted
+[Accepted]
+public bool TermsAccepted { get; set; }
+
+// Must be a valid boolean value
+[Boolean]
+public object IsActive { get; set; }
+
+// Strict boolean: only true or false allowed (not 1, 0, "true", etc.)
+[Boolean(Strict = true)]
+public bool IsEnabled { get; set; }
 ```
 
 ## Error Response Format

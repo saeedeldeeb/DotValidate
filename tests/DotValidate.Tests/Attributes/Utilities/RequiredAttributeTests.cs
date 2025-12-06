@@ -1,4 +1,4 @@
-using DotValidate.Attributes;
+using DotValidate.Attributes.Utilities;
 using Xunit;
 
 namespace DotValidate.Tests.Attributes.Utilities;
