@@ -8,66 +8,15 @@ public class DeclinedAttributeTests
     private readonly DeclinedAttribute _attribute = new();
 
     [Fact]
-    public void IsValid_BooleanFalse_ReturnsTrue()
+    public void IsValid_False_ReturnsTrue()
     {
         Assert.True(_attribute.IsValid(false));
     }
 
-    [Theory]
-    [InlineData("false")]
-    [InlineData("FALSE")]
-    [InlineData("False")]
-    public void IsValid_StringFalse_ReturnsTrue(string value)
-    {
-        Assert.True(_attribute.IsValid(value));
-    }
-
-    [Theory]
-    [InlineData("no")]
-    [InlineData("NO")]
-    [InlineData("No")]
-    public void IsValid_StringNo_ReturnsTrue(string value)
-    {
-        Assert.True(_attribute.IsValid(value));
-    }
-
-    [Theory]
-    [InlineData("off")]
-    [InlineData("OFF")]
-    [InlineData("Off")]
-    public void IsValid_StringOff_ReturnsTrue(string value)
-    {
-        Assert.True(_attribute.IsValid(value));
-    }
-
     [Fact]
-    public void IsValid_IntegerZero_ReturnsTrue()
-    {
-        Assert.True(_attribute.IsValid(0));
-    }
-
-    [Fact]
-    public void IsValid_StringZero_ReturnsTrue()
-    {
-        Assert.True(_attribute.IsValid("0"));
-    }
-
-    [Fact]
-    public void IsValid_BooleanTrue_ReturnsFalse()
+    public void IsValid_True_ReturnsFalse()
     {
         Assert.False(_attribute.IsValid(true));
-    }
-
-    [Fact]
-    public void IsValid_StringYes_ReturnsFalse()
-    {
-        Assert.False(_attribute.IsValid("yes"));
-    }
-
-    [Fact]
-    public void IsValid_IntegerOne_ReturnsFalse()
-    {
-        Assert.False(_attribute.IsValid(1));
     }
 
     [Fact]
@@ -77,15 +26,27 @@ public class DeclinedAttributeTests
     }
 
     [Fact]
-    public void IsValid_RandomString_ReturnsFalse()
+    public void IsValid_StringFalse_ReturnsFalse()
     {
-        Assert.False(_attribute.IsValid("random"));
+        Assert.False(_attribute.IsValid("false"));
     }
 
     [Fact]
-    public void IsValid_EmptyString_ReturnsFalse()
+    public void IsValid_IntegerZero_ReturnsFalse()
     {
-        Assert.False(_attribute.IsValid(""));
+        Assert.False(_attribute.IsValid(0));
+    }
+
+    [Fact]
+    public void IsValid_StringNo_ReturnsFalse()
+    {
+        Assert.False(_attribute.IsValid("no"));
+    }
+
+    [Fact]
+    public void IsValid_StringOff_ReturnsFalse()
+    {
+        Assert.False(_attribute.IsValid("off"));
     }
 
     [Fact]

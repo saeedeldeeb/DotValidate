@@ -119,9 +119,8 @@ api.MapPost("/users", (CreateUserDto dto) =>
 
 | Attribute | Description |
 |-----------|-------------|
-| `[Accepted]` | Must be "yes", "on", 1, "1", true, or "true" |
-| `[Declined]` | Must be "no", "off", 0, "0", false, or "false" |
-| `[Boolean]` | Must be a valid boolean (true, false, 1, 0, "1", "0") |
+| `[Accepted]` | Must be `true` (e.g., Terms of Service) |
+| `[Declined]` | Must be `false` (e.g., opt-out confirmation) |
 
 ### Attribute Options
 
@@ -163,17 +162,13 @@ public DateTime BirthDate { get; set; }
 [Before("2025-12-31")]
 public DateTime BookingDate { get; set; }
 
-// Terms of Service must be accepted
+// Terms of Service must be accepted (must be true)
 [Accepted]
 public bool TermsAccepted { get; set; }
 
-// Must be a valid boolean value
-[Boolean]
-public object IsActive { get; set; }
-
-// Strict boolean: only true or false allowed (not 1, 0, "true", etc.)
-[Boolean(Strict = true)]
-public bool IsEnabled { get; set; }
+// Must be declined (must be false)
+[Declined]
+public bool OptOut { get; set; }
 ```
 
 ## Error Response Format
