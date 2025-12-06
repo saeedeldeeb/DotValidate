@@ -99,6 +99,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[Alpha]` | Must contain only alphabetic characters (Unicode or ASCII) |
 | `[AlphaNum]` | Must contain only letters and numbers |
 | `[AlphaDash]` | Must contain only letters, numbers, dashes, and underscores |
+| `[Ascii]` | Must contain only 7-bit ASCII characters |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -172,6 +173,10 @@ public string Slug { get; set; }
 // ASCII only version
 [AlphaDash(Ascii = true)]
 public string Handle { get; set; }
+
+// Must be 7-bit ASCII characters only (no Unicode)
+[Ascii]
+public string LegacyData { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
