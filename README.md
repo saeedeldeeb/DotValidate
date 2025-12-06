@@ -105,6 +105,8 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[EndsWith(values)]` | Must end with one of the given values |
 | `[DoesntStartWith(values)]` | Must not start with any of the given values |
 | `[DoesntEndWith(values)]` | Must not end with any of the given values |
+| `[Lowercase]` | Must be entirely lowercase |
+| `[Uppercase]` | Must be entirely uppercase |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -198,6 +200,14 @@ public string Username { get; set; }
 // Must not end with certain file extensions (case-insensitive)
 [DoesntEndWith(".exe", ".bat", ".cmd", IgnoreCase = true)]
 public string Filename { get; set; }
+
+// Must be lowercase
+[Lowercase]
+public string Username { get; set; }
+
+// Must be uppercase
+[Uppercase]
+public string CountryCode { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
