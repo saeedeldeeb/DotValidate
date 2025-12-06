@@ -95,6 +95,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | Attribute | Description |
 |-----------|-------------|
 | `[Email]` | Property must be a valid email address |
+| `[Url]` | Property must be a valid URL (http or https) |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -144,6 +145,10 @@ public string Name { get; set; }
 // Regex with options
 [Regex(@"^\d{3}-\d{4}$", Options = RegexOptions.IgnoreCase)]
 public string PhoneNumber { get; set; }
+
+// URL validation (http and https only)
+[Url]
+public string? Website { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
