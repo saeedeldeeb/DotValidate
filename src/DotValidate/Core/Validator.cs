@@ -27,7 +27,18 @@ public sealed class Validator : IValidator
 
             foreach (var attribute in attributes)
             {
-                if (!attribute.IsValid(value))
+                bool isValid;
+
+                if (attribute is ConditionalValidationAttribute conditional)
+                {
+                    isValid = conditional.IsValid(value, instance);
+                }
+                else
+                {
+                    isValid = attribute.IsValid(value);
+                }
+
+                if (!isValid)
                 {
                     result.AddError(
                         property.Name,

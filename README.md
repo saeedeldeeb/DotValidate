@@ -87,6 +87,8 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | Attribute | Description |
 |-----------|-------------|
 | `[Required]` | Property must not be null or empty |
+| `[RequiredIf(property, values)]` | Required if another property equals any of the values |
+| `[RequiredUnless(property, values)]` | Required unless another property equals any of the values |
 
 ### Strings
 
@@ -121,6 +123,8 @@ api.MapPost("/users", (CreateUserDto dto) =>
 |-----------|-------------|
 | `[Accepted]` | Must be `true` (e.g., Terms of Service) |
 | `[Declined]` | Must be `false` (e.g., opt-out confirmation) |
+| `[AcceptedIf(property, values)]` | Must be `true` if another property equals any of the values |
+| `[DeclinedIf(property, values)]` | Must be `false` if another property equals any of the values |
 
 ### Attribute Options
 
@@ -169,6 +173,22 @@ public bool TermsAccepted { get; set; }
 // Must be declined (must be false)
 [Declined]
 public bool OptOut { get; set; }
+
+// Conditional validation - Required if PaymentMethod is "CreditCard" or "DebitCard"
+[RequiredIf(nameof(PaymentMethod), "CreditCard", "DebitCard")]
+public string? CardNumber { get; set; }
+
+// Required unless PaymentMethod is "Cash"
+[RequiredUnless(nameof(PaymentMethod), "Cash")]
+public string? BillingAddress { get; set; }
+
+// Must accept terms when paying by card
+[AcceptedIf(nameof(PaymentMethod), "CreditCard", "DebitCard")]
+public bool AcceptCardTerms { get; set; }
+
+// Cannot access admin panel when user is Guest or Anonymous
+[DeclinedIf(nameof(UserRole), "Guest", "Anonymous")]
+public bool CanAccessAdmin { get; set; }
 ```
 
 ## Error Response Format
