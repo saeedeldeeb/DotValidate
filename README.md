@@ -109,6 +109,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[Uppercase]` | Must be entirely uppercase |
 | `[HexColor]` | Must be a valid hexadecimal color (#RGB, #RRGGBB, #RRGGBBAA) |
 | `[Ip]` | Must be a valid IP address (IPv4 or IPv6) |
+| `[MacAddress]` | Must be a valid MAC address |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -226,6 +227,10 @@ public string IPv4Address { get; set; }
 // IPv6 only
 [Ip(Version = IpVersion.V6)]
 public string IPv6Address { get; set; }
+
+// Must be a valid MAC address (00:1A:2B:3C:4D:5E or 00-1A-2B-3C-4D-5E)
+[MacAddress]
+public string DeviceMac { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
