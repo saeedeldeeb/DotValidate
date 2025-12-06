@@ -96,6 +96,9 @@ api.MapPost("/users", (CreateUserDto dto) =>
 |-----------|-------------|
 | `[Email]` | Property must be a valid email address |
 | `[Url]` | Property must be a valid URL (http or https) |
+| `[Alpha]` | Must contain only alphabetic characters (Unicode or ASCII) |
+| `[AlphaNum]` | Must contain only letters and numbers |
+| `[AlphaDash]` | Must contain only letters, numbers, dashes, and underscores |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -149,6 +152,26 @@ public string PhoneNumber { get; set; }
 // URL validation (http and https only)
 [Url]
 public string? Website { get; set; }
+
+// Alphabetic characters only (Unicode by default - allows é, ñ, 中, etc.)
+[Alpha]
+public string FirstName { get; set; }
+
+// ASCII letters only (a-z, A-Z)
+[Alpha(Ascii = true)]
+public string Username { get; set; }
+
+// Letters and numbers only (no special characters)
+[AlphaNum]
+public string Code { get; set; }
+
+// Letters, numbers, dashes, underscores (great for slugs/usernames)
+[AlphaDash]
+public string Slug { get; set; }
+
+// ASCII only version
+[AlphaDash(Ascii = true)]
+public string Handle { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
