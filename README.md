@@ -89,6 +89,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[Required]` | Property must not be null or empty |
 | `[RequiredIf(property, values)]` | Required if another property equals any of the values |
 | `[RequiredUnless(property, values)]` | Required unless another property equals any of the values |
+| `[Different(property)]` | Must have a different value than another property |
 
 ### Strings
 
@@ -222,6 +223,10 @@ public bool AcceptCardTerms { get; set; }
 // Cannot access admin panel when user is Guest or Anonymous
 [DeclinedIf(nameof(UserRole), "Guest", "Anonymous")]
 public bool CanAccessAdmin { get; set; }
+
+// New password must be different from current password
+[Different(nameof(CurrentPassword))]
+public string NewPassword { get; set; }
 ```
 
 ## Error Response Format
