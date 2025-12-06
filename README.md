@@ -108,6 +108,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[Lowercase]` | Must be entirely lowercase |
 | `[Uppercase]` | Must be entirely uppercase |
 | `[HexColor]` | Must be a valid hexadecimal color (#RGB, #RRGGBB, #RRGGBBAA) |
+| `[Ip]` | Must be a valid IP address (IPv4 or IPv6) |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -213,6 +214,18 @@ public string CountryCode { get; set; }
 // Must be a valid hex color (#RGB, #RRGGBB, or #RRGGBBAA)
 [HexColor]
 public string BackgroundColor { get; set; }
+
+// Must be a valid IP address (IPv4 or IPv6)
+[Ip]
+public string ServerAddress { get; set; }
+
+// IPv4 only
+[Ip(Version = IpVersion.V4)]
+public string IPv4Address { get; set; }
+
+// IPv6 only
+[Ip(Version = IpVersion.V6)]
+public string IPv6Address { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
