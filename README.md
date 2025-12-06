@@ -101,6 +101,10 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[AlphaNum]` | Must contain only letters and numbers |
 | `[AlphaDash]` | Must contain only letters, numbers, dashes, and underscores |
 | `[Ascii]` | Must contain only 7-bit ASCII characters |
+| `[StartsWith(values)]` | Must start with one of the given values |
+| `[EndsWith(values)]` | Must end with one of the given values |
+| `[DoesntStartWith(values)]` | Must not start with any of the given values |
+| `[DoesntEndWith(values)]` | Must not end with any of the given values |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -178,6 +182,22 @@ public string Handle { get; set; }
 // Must be 7-bit ASCII characters only (no Unicode)
 [Ascii]
 public string LegacyData { get; set; }
+
+// Must start with allowed prefixes
+[StartsWith("https://", "http://")]
+public string Website { get; set; }
+
+// Must end with allowed extensions (case-insensitive)
+[EndsWith(".pdf", ".doc", ".docx", IgnoreCase = true)]
+public string DocumentPath { get; set; }
+
+// Must not start with certain prefixes
+[DoesntStartWith("admin", "root", "system")]
+public string Username { get; set; }
+
+// Must not end with certain file extensions (case-insensitive)
+[DoesntEndWith(".exe", ".bat", ".cmd", IgnoreCase = true)]
+public string Filename { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
