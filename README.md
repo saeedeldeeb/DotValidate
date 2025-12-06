@@ -113,6 +113,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[MacAddress]` | Must be a valid MAC address |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
+| `[NotRegex(pattern)]` | String must NOT match the regex pattern |
 
 ### Numbers
 
@@ -160,6 +161,10 @@ public string Name { get; set; }
 // Regex with options
 [Regex(@"^\d{3}-\d{4}$", Options = RegexOptions.IgnoreCase)]
 public string PhoneNumber { get; set; }
+
+// Must NOT match pattern (e.g., block HTML tags)
+[NotRegex(@"<[^>]+>")]
+public string Comment { get; set; }
 
 // URL validation (http and https only)
 [Url]
