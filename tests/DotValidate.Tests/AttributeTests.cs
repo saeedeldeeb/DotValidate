@@ -1,4 +1,6 @@
 using DotValidate.Attributes;
+using DotValidate.Attributes.Numbers;
+using DotValidate.Attributes.Strings;
 using Xunit;
 
 namespace DotValidate.Tests;

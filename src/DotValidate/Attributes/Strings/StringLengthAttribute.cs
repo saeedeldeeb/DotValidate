@@ -1,4 +1,4 @@
-namespace DotValidate.Attributes;
+namespace DotValidate.Attributes.Strings;
 
 /// <summary>
 /// Specifies the minimum and maximum length of characters allowed in a string property.

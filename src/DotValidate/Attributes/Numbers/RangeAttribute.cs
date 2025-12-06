@@ -1,4 +1,4 @@
-namespace DotValidate.Attributes;
+namespace DotValidate.Attributes.Numbers;
 
 /// <summary>
 /// Specifies that a numeric property value must be within a specified range.

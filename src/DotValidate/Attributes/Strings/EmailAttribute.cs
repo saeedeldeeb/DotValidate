@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace DotValidate.Attributes;
+namespace DotValidate.Attributes.Strings;
 
 /// <summary>
 /// Specifies that a property value must be a valid email address.
