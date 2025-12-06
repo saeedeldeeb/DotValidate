@@ -107,6 +107,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[DoesntEndWith(values)]` | Must not end with any of the given values |
 | `[Lowercase]` | Must be entirely lowercase |
 | `[Uppercase]` | Must be entirely uppercase |
+| `[HexColor]` | Must be a valid hexadecimal color (#RGB, #RRGGBB, #RRGGBBAA) |
 | `[StringLength(max)]` | String must not exceed maximum length |
 | `[Regex(pattern)]` | String must match the regex pattern |
 
@@ -208,6 +209,10 @@ public string Username { get; set; }
 // Must be uppercase
 [Uppercase]
 public string CountryCode { get; set; }
+
+// Must be a valid hex color (#RGB, #RRGGBB, or #RRGGBBAA)
+[HexColor]
+public string BackgroundColor { get; set; }
 
 // Collection must contain all specified values
 [Contains("admin", "user")]
