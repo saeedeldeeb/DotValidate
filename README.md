@@ -90,6 +90,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[RequiredIf(property, values)]` | Required if another property equals any of the values |
 | `[RequiredUnless(property, values)]` | Required unless another property equals any of the values |
 | `[Different(property)]` | Must have a different value than another property |
+| `[Same(property)]` | Must have the same value as another property |
 
 ### Strings
 
@@ -280,6 +281,10 @@ public bool CanAccessAdmin { get; set; }
 // New password must be different from current password
 [Different(nameof(CurrentPassword))]
 public string NewPassword { get; set; }
+
+// Confirm password must match password
+[Same(nameof(Password))]
+public string ConfirmPassword { get; set; }
 ```
 
 ## Error Response Format
