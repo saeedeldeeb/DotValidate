@@ -142,7 +142,10 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | Attribute | Description |
 |-----------|-------------|
 | `[After(date)]` | Date must be after the specified date |
+| `[AfterOrEqual(date)]` | Date must be after or equal to the specified date |
 | `[Before(date)]` | Date must be before the specified date |
+| `[BeforeOrEqual(date)]` | Date must be before or equal to the specified date |
+| `[DateEquals(date)]` | Date must equal the specified date |
 
 ### Booleans
 
