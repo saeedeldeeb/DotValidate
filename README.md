@@ -135,6 +135,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 |-----------|-------------|
 | `[Contains(values)]` | Collection must contain all specified values |
 | `[Between(min, max)]` | Collection must have between min and max items (inclusive) |
+| `[Distinct]` | Collection must contain only unique values (no duplicates) |
 
 ### Dates
 
