@@ -1,18 +1,18 @@
-namespace DotValidate.Attributes.Numbers;
+namespace DotValidate.Attributes.Utilities;
 
 /// <summary>
-/// Specifies that a property must be less than or equal to another property.
+/// Specifies that a property must be less than another property.
 /// Works with any type that implements IComparable (numbers, dates, etc.).
 /// </summary>
-public sealed class LessThanOrEqualAttribute : ConditionalValidationAttribute
+public sealed class LessThanAttribute : ConditionalValidationAttribute
 {
-    protected override string DefaultErrorMessage => "{0} must be less than or equal to {1}.";
+    protected override string DefaultErrorMessage => "{0} must be less than {1}.";
 
     /// <summary>
     /// Initializes a new instance specifying the property to compare against.
     /// </summary>
-    /// <param name="otherProperty">The name of the property that this value must be less than or equal to.</param>
-    public LessThanOrEqualAttribute(string otherProperty) : base(otherProperty)
+    /// <param name="otherProperty">The name of the property that this value must be less than.</param>
+    public LessThanAttribute(string otherProperty) : base(otherProperty)
     {
     }
 
@@ -37,7 +37,7 @@ public sealed class LessThanOrEqualAttribute : ConditionalValidationAttribute
 
         if (value is IComparable comparable)
         {
-            return comparable.CompareTo(otherValue) <= 0;
+            return comparable.CompareTo(otherValue) < 0;
         }
 
         return true; // Not comparable, skip validation

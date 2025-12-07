@@ -1,4 +1,4 @@
-using DotValidate.Attributes.Numbers;
+using DotValidate.Attributes.Utilities;
 using DotValidate.Core;
 using Xunit;
 
