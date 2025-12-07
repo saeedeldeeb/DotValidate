@@ -123,6 +123,8 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[Range(min, max)]` | Numeric property must be within range |
 | `[GreaterThan(property)]` | Must be greater than another property |
 | `[GreaterThanOrEqual(property)]` | Must be greater than or equal to another property |
+| `[LessThan(property)]` | Must be less than another property |
+| `[LessThanOrEqual(property)]` | Must be less than or equal to another property |
 
 ### Collections
 
@@ -305,6 +307,14 @@ public DateTime EndDate { get; set; }
 // Max price must be at least min price
 [GreaterThanOrEqual(nameof(MinPrice))]
 public decimal MaxPrice { get; set; }
+
+// Start date must be before end date
+[LessThan(nameof(EndDate))]
+public DateTime StartDate { get; set; }
+
+// Min quantity must not exceed max quantity
+[LessThanOrEqual(nameof(MaxQuantity))]
+public int MinQuantity { get; set; }
 ```
 
 ## Error Response Format
