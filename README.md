@@ -91,6 +91,10 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[RequiredUnless(property, values)]` | Required unless another property equals any of the values |
 | `[Different(property)]` | Must have a different value than another property |
 | `[Same(property)]` | Must have the same value as another property |
+| `[GreaterThan(property)]` | Must be greater than another property (any IComparable) |
+| `[GreaterThanOrEqual(property)]` | Must be greater than or equal to another property |
+| `[LessThan(property)]` | Must be less than another property |
+| `[LessThanOrEqual(property)]` | Must be less than or equal to another property |
 
 ### Strings
 
@@ -121,10 +125,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | Attribute | Description |
 |-----------|-------------|
 | `[Range(min, max)]` | Numeric property must be within range |
-| `[GreaterThan(property)]` | Must be greater than another property |
-| `[GreaterThanOrEqual(property)]` | Must be greater than or equal to another property |
-| `[LessThan(property)]` | Must be less than another property |
-| `[LessThanOrEqual(property)]` | Must be less than or equal to another property |
+| `[DecimalPlaces(min, max)]` | Must have between min and max decimal places |
 
 ### Collections
 
