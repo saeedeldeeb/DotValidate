@@ -126,6 +126,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 |-----------|-------------|
 | `[Range(min, max)]` | Numeric property must be within range |
 | `[DecimalPlaces(min, max)]` | Must have between min and max decimal places |
+| `[Digits(min, max)]` | Integer must have between min and max digits |
 
 ### Collections
 
