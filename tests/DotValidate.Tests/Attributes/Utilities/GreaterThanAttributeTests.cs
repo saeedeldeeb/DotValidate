@@ -2,9 +2,9 @@ using DotValidate.Attributes.Utilities;
 using DotValidate.Core;
 using Xunit;
 
-namespace DotValidate.Tests.Attributes.Numbers;
+namespace DotValidate.Tests.Attributes.Utilities;
 
-public class GreaterThanOrEqualAttributeTests
+public class GreaterThanAttributeTests
 {
     private readonly Validator _validator = new();
 
@@ -12,7 +12,7 @@ public class GreaterThanOrEqualAttributeTests
     {
         public int Min { get; set; }
 
-        [GreaterThanOrEqual(nameof(Min))]
+        [GreaterThan(nameof(Min))]
         public int Max { get; set; }
     }
 
@@ -20,7 +20,7 @@ public class GreaterThanOrEqualAttributeTests
     {
         public decimal MinPrice { get; set; }
 
-        [GreaterThanOrEqual(nameof(MinPrice))]
+        [GreaterThan(nameof(MinPrice))]
         public decimal MaxPrice { get; set; }
     }
 
@@ -28,7 +28,7 @@ public class GreaterThanOrEqualAttributeTests
     {
         public DateTime StartDate { get; set; }
 
-        [GreaterThanOrEqual(nameof(StartDate))]
+        [GreaterThan(nameof(StartDate))]
         public DateTime EndDate { get; set; }
     }
 
@@ -36,7 +36,7 @@ public class GreaterThanOrEqualAttributeTests
     {
         public int? Min { get; set; }
 
-        [GreaterThanOrEqual(nameof(Min))]
+        [GreaterThan(nameof(Min))]
         public int? Max { get; set; }
     }
 
@@ -49,11 +49,12 @@ public class GreaterThanOrEqualAttributeTests
     }
 
     [Fact]
-    public void IsValid_IntEqual_ReturnsTrue()
+    public void IsValid_IntEqual_ReturnsFalse()
     {
         var dto = new IntDto { Min = 10, Max = 10 };
         var result = _validator.Validate(dto);
-        Assert.True(result.IsValid);
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "Max");
     }
 
     [Fact]
@@ -62,21 +63,12 @@ public class GreaterThanOrEqualAttributeTests
         var dto = new IntDto { Min = 20, Max = 10 };
         var result = _validator.Validate(dto);
         Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, e => e.PropertyName == "Max");
     }
 
     [Fact]
     public void IsValid_DecimalGreater_ReturnsTrue()
     {
         var dto = new DecimalDto { MinPrice = 9.99m, MaxPrice = 19.99m };
-        var result = _validator.Validate(dto);
-        Assert.True(result.IsValid);
-    }
-
-    [Fact]
-    public void IsValid_DecimalEqual_ReturnsTrue()
-    {
-        var dto = new DecimalDto { MinPrice = 9.99m, MaxPrice = 9.99m };
         var result = _validator.Validate(dto);
         Assert.True(result.IsValid);
     }
@@ -96,18 +88,6 @@ public class GreaterThanOrEqualAttributeTests
         {
             StartDate = new DateTime(2024, 1, 1),
             EndDate = new DateTime(2024, 12, 31)
-        };
-        var result = _validator.Validate(dto);
-        Assert.True(result.IsValid);
-    }
-
-    [Fact]
-    public void IsValid_DateEqual_ReturnsTrue()
-    {
-        var dto = new DateDto
-        {
-            StartDate = new DateTime(2024, 6, 15),
-            EndDate = new DateTime(2024, 6, 15)
         };
         var result = _validator.Validate(dto);
         Assert.True(result.IsValid);
@@ -144,8 +124,8 @@ public class GreaterThanOrEqualAttributeTests
     [Fact]
     public void FormatErrorMessage_IncludesOtherPropertyName()
     {
-        var attribute = new GreaterThanOrEqualAttribute("MinValue");
+        var attribute = new GreaterThanAttribute("MinValue");
         var message = attribute.FormatErrorMessage("MaxValue");
-        Assert.Equal("MaxValue must be greater than or equal to MinValue.", message);
+        Assert.Equal("MaxValue must be greater than MinValue.", message);
     }
 }

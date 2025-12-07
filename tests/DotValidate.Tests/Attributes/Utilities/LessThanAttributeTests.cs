@@ -2,9 +2,9 @@ using DotValidate.Attributes.Utilities;
 using DotValidate.Core;
 using Xunit;
 
-namespace DotValidate.Tests.Attributes.Numbers;
+namespace DotValidate.Tests.Attributes.Utilities;
 
-public class LessThanOrEqualAttributeTests
+public class LessThanAttributeTests
 {
     private readonly Validator _validator = new();
 
@@ -12,7 +12,7 @@ public class LessThanOrEqualAttributeTests
     {
         public int Max { get; set; }
 
-        [LessThanOrEqual(nameof(Max))]
+        [LessThan(nameof(Max))]
         public int Min { get; set; }
     }
 
@@ -20,7 +20,7 @@ public class LessThanOrEqualAttributeTests
     {
         public decimal MaxPrice { get; set; }
 
-        [LessThanOrEqual(nameof(MaxPrice))]
+        [LessThan(nameof(MaxPrice))]
         public decimal MinPrice { get; set; }
     }
 
@@ -28,7 +28,7 @@ public class LessThanOrEqualAttributeTests
     {
         public DateTime EndDate { get; set; }
 
-        [LessThanOrEqual(nameof(EndDate))]
+        [LessThan(nameof(EndDate))]
         public DateTime StartDate { get; set; }
     }
 
@@ -36,7 +36,7 @@ public class LessThanOrEqualAttributeTests
     {
         public int? Max { get; set; }
 
-        [LessThanOrEqual(nameof(Max))]
+        [LessThan(nameof(Max))]
         public int? Min { get; set; }
     }
 
@@ -49,11 +49,12 @@ public class LessThanOrEqualAttributeTests
     }
 
     [Fact]
-    public void IsValid_IntEqual_ReturnsTrue()
+    public void IsValid_IntEqual_ReturnsFalse()
     {
         var dto = new IntDto { Max = 10, Min = 10 };
         var result = _validator.Validate(dto);
-        Assert.True(result.IsValid);
+        Assert.False(result.IsValid);
+        Assert.Contains(result.Errors, e => e.PropertyName == "Min");
     }
 
     [Fact]
@@ -62,21 +63,12 @@ public class LessThanOrEqualAttributeTests
         var dto = new IntDto { Max = 10, Min = 20 };
         var result = _validator.Validate(dto);
         Assert.False(result.IsValid);
-        Assert.Contains(result.Errors, e => e.PropertyName == "Min");
     }
 
     [Fact]
     public void IsValid_DecimalLess_ReturnsTrue()
     {
         var dto = new DecimalDto { MaxPrice = 19.99m, MinPrice = 9.99m };
-        var result = _validator.Validate(dto);
-        Assert.True(result.IsValid);
-    }
-
-    [Fact]
-    public void IsValid_DecimalEqual_ReturnsTrue()
-    {
-        var dto = new DecimalDto { MaxPrice = 9.99m, MinPrice = 9.99m };
         var result = _validator.Validate(dto);
         Assert.True(result.IsValid);
     }
@@ -96,18 +88,6 @@ public class LessThanOrEqualAttributeTests
         {
             EndDate = new DateTime(2024, 12, 31),
             StartDate = new DateTime(2024, 1, 1)
-        };
-        var result = _validator.Validate(dto);
-        Assert.True(result.IsValid);
-    }
-
-    [Fact]
-    public void IsValid_DateEqual_ReturnsTrue()
-    {
-        var dto = new DateDto
-        {
-            EndDate = new DateTime(2024, 6, 15),
-            StartDate = new DateTime(2024, 6, 15)
         };
         var result = _validator.Validate(dto);
         Assert.True(result.IsValid);
@@ -144,8 +124,8 @@ public class LessThanOrEqualAttributeTests
     [Fact]
     public void FormatErrorMessage_IncludesOtherPropertyName()
     {
-        var attribute = new LessThanOrEqualAttribute("MaxValue");
+        var attribute = new LessThanAttribute("MaxValue");
         var message = attribute.FormatErrorMessage("MinValue");
-        Assert.Equal("MinValue must be less than or equal to MaxValue.", message);
+        Assert.Equal("MinValue must be less than MaxValue.", message);
     }
 }
