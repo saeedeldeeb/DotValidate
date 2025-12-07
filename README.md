@@ -156,6 +156,15 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | `[AcceptedIf(property, values)]` | Must be `true` if another property equals any of the values |
 | `[DeclinedIf(property, values)]` | Must be `false` if another property equals any of the values |
 
+### Files
+
+| Attribute | Description |
+|-----------|-------------|
+| `[FileSize(min, max)]` | File size must be within range (in bytes) |
+| `[FileExtensions(".pdf", ".doc")]` | File must have one of the allowed extensions |
+| `[MimeTypes("image/png", "application/pdf")]` | File must have one of the allowed MIME types |
+| `[Image]` | File must be an image (jpeg, png, gif, bmp, webp, svg, ico, tiff) |
+
 ### Attribute Options
 
 ```csharp
