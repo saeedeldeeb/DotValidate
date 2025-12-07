@@ -121,6 +121,8 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | Attribute | Description |
 |-----------|-------------|
 | `[Range(min, max)]` | Numeric property must be within range |
+| `[GreaterThan(property)]` | Must be greater than another property |
+| `[GreaterThanOrEqual(property)]` | Must be greater than or equal to another property |
 
 ### Collections
 
@@ -295,6 +297,14 @@ public string NewPassword { get; set; }
 // Confirm password must match password
 [Same(nameof(Password))]
 public string ConfirmPassword { get; set; }
+
+// End date must be after start date
+[GreaterThan(nameof(StartDate))]
+public DateTime EndDate { get; set; }
+
+// Max price must be at least min price
+[GreaterThanOrEqual(nameof(MinPrice))]
+public decimal MaxPrice { get; set; }
 ```
 
 ## Error Response Format
