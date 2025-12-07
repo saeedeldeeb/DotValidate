@@ -131,6 +131,7 @@ api.MapPost("/users", (CreateUserDto dto) =>
 | Attribute | Description |
 |-----------|-------------|
 | `[Contains(values)]` | Collection must contain all specified values |
+| `[Between(min, max)]` | Collection must have between min and max items (inclusive) |
 
 ### Dates
 
@@ -250,6 +251,10 @@ public string TransactionId { get; set; }
 // Collection must contain all specified values
 [Contains("admin", "user")]
 public List<string> Roles { get; set; }
+
+// Collection must have between 1 and 5 items
+[Between(1, 5)]
+public List<string> Tags { get; set; }
 
 // Date must be after a specific date
 [After("2024-01-01")]
