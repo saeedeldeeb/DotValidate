@@ -1,8 +1,8 @@
 # DotValidate
 
 [![CI](https://github.com/saeedeldeeb/DotValidate/actions/workflows/ci.yml/badge.svg)](https://github.com/saeedeldeeb/DotValidate/actions/workflows/ci.yml)
-[![NuGet](https://img.shields.io/nuget/v/DotValidate.svg)](https://www.nuget.org/packages/DotValidate)
-[![NuGet Downloads](https://img.shields.io/nuget/dt/DotValidate.svg)](https://www.nuget.org/packages/DotValidate)
+[![NuGet](https://img.shields.io/nuget/v/DotValidation.svg)](https://www.nuget.org/packages/DotValidation)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/DotValidation.svg)](https://www.nuget.org/packages/DotValidation)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A modern .NET validation library with automatic ASP.NET Core integration.
@@ -17,7 +17,7 @@ A modern .NET validation library with automatic ASP.NET Core integration.
 ## Installation
 
 ```bash
-dotnet add package DotValidate
+dotnet add package DotValidation
 ```
 
 ## Quick Start
