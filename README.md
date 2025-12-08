@@ -22,14 +22,14 @@ dotnet add package DotValidation
 
 ## Quick Start
 
-### 1. Add DotValidate to your services
+### 1. Add DotValidation to your services
 
 ```csharp
 // Program.cs
-builder.Services.AddDotValidate();
-builder.Services.AddControllers().AddDotValidateFilter(); // For MVC controllers
+builder.Services.AddDotValidation();
+builder.Services.AddControllers().AddDotValidationFilter(); // For MVC controllers
 // OR
-var api = app.MapDotValidateGroup(); // For Minimal APIs
+var api = app.MapDotValidationGroup(); // For Minimal APIs
 ```
 
 ### 2. Decorate your DTOs with validation attributes
