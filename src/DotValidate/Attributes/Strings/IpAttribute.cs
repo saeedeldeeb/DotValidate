@@ -12,15 +12,15 @@ public sealed class IpAttribute : ValidationAttribute
     /// <summary>
     /// When set to V4, only IPv4 addresses are valid.
     /// When set to V6, only IPv6 addresses are valid.
-    /// When null (default), both IPv4 and IPv6 are valid.
+    /// When Any (default), both IPv4 and IPv6 are valid.
     /// </summary>
-    public IpVersion? Version { get; set; }
+    public IpVersion Version { get; set; } = IpVersion.Any;
 
     protected override string DefaultErrorMessage => Version switch
     {
         IpVersion.V4 => "{0} must be a valid IPv4 address.",
         IpVersion.V6 => "{0} must be a valid IPv6 address.",
-        _ => "{0} must be a valid IP address."
+        IpVersion.Any or _ => "{0} must be a valid IP address."
     };
 
     public override bool IsValid(object? value)
@@ -49,7 +49,7 @@ public sealed class IpAttribute : ValidationAttribute
         {
             IpVersion.V4 => ipAddress.AddressFamily == AddressFamily.InterNetwork,
             IpVersion.V6 => ipAddress.AddressFamily == AddressFamily.InterNetworkV6,
-            _ => true
+            IpVersion.Any or _ => true
         };
     }
 }
@@ -59,6 +59,11 @@ public sealed class IpAttribute : ValidationAttribute
 /// </summary>
 public enum IpVersion
 {
+    /// <summary>
+    /// Both IPv4 and IPv6 addresses are valid (default).
+    /// </summary>
+    Any,
+
     /// <summary>
     /// IPv4 address (e.g., 192.168.1.1)
     /// </summary>
