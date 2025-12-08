@@ -35,12 +35,12 @@ var api = app.MapDotValidationGroup(); // For Minimal APIs
 ### 2. Decorate your DTOs with validation attributes
 
 ```csharp
-using DotValidate.Attributes.Utilities;
-using DotValidate.Attributes.Strings;
-using DotValidate.Attributes.Numbers;
-using DotValidate.Attributes.Collections;
-using DotValidate.Attributes.Dates;
-using DotValidate.Attributes.Booleans;
+using DotValidation.Attributes.Utilities;
+using DotValidation.Attributes.Strings;
+using DotValidation.Attributes.Numbers;
+using DotValidation.Attributes.Collections;
+using DotValidation.Attributes.Dates;
+using DotValidation.Attributes.Booleans;
 
 public class CreateUserDto
 {
@@ -345,7 +345,7 @@ public int MinQuantity { get; set; }
 
 ## Error Response Format
 
-When validation fails, DotValidate returns a standard RFC 7807 Problem Details response:
+When validation fails, DotValidation returns a standard RFC 7807 Problem Details response:
 
 ```json
 {
