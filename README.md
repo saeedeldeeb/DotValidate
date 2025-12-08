@@ -1,5 +1,10 @@
 # DotValidate
 
+[![CI](https://github.com/saeedeldeeb/DotValidate/actions/workflows/ci.yml/badge.svg)](https://github.com/saeedeldeeb/DotValidate/actions/workflows/ci.yml)
+[![NuGet](https://img.shields.io/nuget/v/DotValidate.svg)](https://www.nuget.org/packages/DotValidate)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/DotValidate.svg)](https://www.nuget.org/packages/DotValidate)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A modern .NET validation library with automatic ASP.NET Core integration.
 
 ## Features
