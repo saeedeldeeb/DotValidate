@@ -1,6 +1,6 @@
-# DotValidate
+# DotValidation
 
-[![CI](https://github.com/saeedeldeeb/DotValidate/actions/workflows/ci.yml/badge.svg)](https://github.com/saeedeldeeb/DotValidate/actions/workflows/ci.yml)
+[![CI](https://github.com/saeedeldeeb/DotValidation/actions/workflows/ci.yml/badge.svg)](https://github.com/saeedeldeeb/DotValidation/actions/workflows/ci.yml)
 [![NuGet](https://img.shields.io/nuget/v/DotValidation.svg)](https://www.nuget.org/packages/DotValidation)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/DotValidation.svg)](https://www.nuget.org/packages/DotValidation)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
